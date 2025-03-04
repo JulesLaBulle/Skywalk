@@ -41,10 +41,20 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 
     @Override
     public void surfaceCreated(@NonNull SurfaceHolder holder) {
+        // Initialiser le joueur ici, avant de démarrer le thread
+        player = new PlayerShip(
+                BitmapFactory.decodeResource(getResources(), R.drawable.tie),
+                getWidth(),
+                getHeight(),
+                getWidth() / 2,
+                getHeight() / 2
+        );
+
         thread = new GameThread(getHolder(), this);
         thread.setRunning(true);
         thread.start();
     }
+
 
     @Override
     public void surfaceChanged(@NonNull SurfaceHolder holder, int format, int width, int height) {
