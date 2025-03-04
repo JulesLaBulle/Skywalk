@@ -12,20 +12,20 @@
     <!-- Joystick -->
     <ImageView
         android:id="@+id/joystick_exterior"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
+        android:layout_width="170dp"
+        android:layout_height="170dp"
         android:src="@drawable/pad_exterior"
         android:layout_alignParentBottom="true"
-        android:layout_margin="30dp"/>
+        android:layout_margin="50dp"/>
 
     <ImageView
         android:id="@+id/joystick_center"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
         android:src="@drawable/pad_center"
         android:layout_alignParentBottom="true"
-        android:layout_marginLeft="75dp"
-        android:layout_marginBottom="75dp"/>
+        android:layout_marginLeft="110dp"
+        android:layout_marginBottom="110dp"/>
 
     <!-- Game Over Layout -->
     <RelativeLayout
@@ -37,8 +37,8 @@
 
         <ImageView
             android:id="@+id/explosion"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
+            android:layout_width="500dp"
+            android:layout_height="500dp"
             android:src="@drawable/explosion"
             android:layout_centerInParent="true"/>
 

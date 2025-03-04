@@ -16,7 +16,7 @@ public class PlayerShip {
         this.screenHeight = screenHeight;
 
         // Redimensionner l'image à 5% de la largeur d'écran
-        int desiredWidth = (int)(screenWidth * 0.05);
+        int desiredWidth = (int)(screenWidth * 0.15);
         int desiredHeight = (int)(desiredWidth * ((float)bmp.getHeight()/bmp.getWidth()));
         image = Bitmap.createScaledBitmap(bmp, desiredWidth, desiredHeight, true);
 

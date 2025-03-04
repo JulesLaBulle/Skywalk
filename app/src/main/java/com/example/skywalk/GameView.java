@@ -1,6 +1,7 @@
 package com.example.skywalk;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Rect;
@@ -15,18 +16,21 @@ import java.util.Iterator;
 import java.util.List;
 
 public class GameView extends SurfaceView implements SurfaceHolder.Callback {
+    private Bitmap background;
     private GameThread thread;
     private PlayerShip player;
     private final List<Asteroid> asteroids = new ArrayList<>();
     private boolean isGameOver = false;
 
-    public GameView(Context context) {
-        super(context);
+    // Constructeur utilisé lors de l'inflation depuis XML
+    public GameView(Context context, AttributeSet attrs) {
+        super(context, attrs);
         init();
     }
 
-    public GameView(Context context, AttributeSet attrs) {
-        super(context, attrs);
+    // Autres constructeurs recommandés
+    public GameView(Context context) {
+        super(context);
         init();
     }
 
@@ -37,6 +41,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 
     private void init() {
         getHolder().addCallback(this);
+        background = BitmapFactory.decodeResource(getResources(), R.drawable.etoilefond);
     }
 
     @Override
@@ -80,7 +85,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
     }
 
     public void update() {
-        if(!isGameOver) {
+        if (!isGameOver && player != null) {
             player.update();
             updateAsteroids();
             checkCollisions();
@@ -91,8 +96,11 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
     public void draw(Canvas canvas) {
         super.draw(canvas);
         if(canvas != null) {
+            // Dessiner le fond à partir du coin supérieur gauche
+            canvas.drawBitmap(background, 0, 0, null);
+            // Dessiner le joueur et les astéroïdes par-dessus
             player.draw(canvas);
-            for(Asteroid asteroid : asteroids) {
+            for (Asteroid asteroid : asteroids) {
                 asteroid.draw(canvas);
             }
         }
@@ -100,7 +108,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 
     private void updateAsteroids() {
         // Ajout aléatoire d'astéroïdes
-        if(Math.random() < 0.05) {
+        if(Math.random() < 0.2) {
             asteroids.add(new Asteroid(
                     BitmapFactory.decodeResource(getResources(), getRandomAsteroid()),
                     getWidth(),

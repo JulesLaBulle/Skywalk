@@ -20,20 +20,20 @@ public class Asteroid {
 
         // Taille aléatoire entre 3% et 6% de la largeur d'écran
         Random rand = new Random();
-        int baseSize = (int)(screenWidth * (0.03 + rand.nextFloat() * 0.03));
+        int baseSize = (int)(screenWidth * (0.04 + rand.nextFloat() * 0.12));
         image = Bitmap.createScaledBitmap(bmp, baseSize, baseSize, true);
 
         // Position initiale aléatoire sur les bords
         if(rand.nextBoolean()) {
             x = rand.nextInt(screenWidth);
-            y = rand.nextBoolean() ? 0 : screenHeight;
+            y = rand.nextBoolean() ? -10 : screenHeight+10;
         } else {
-            x = rand.nextBoolean() ? 0 : screenWidth;
+            x = rand.nextBoolean() ? -10 : screenWidth+10;
             y = rand.nextInt(screenHeight);
         }
         // Direction aléatoire
-        dx = (rand.nextFloat() - 0.5f) * 5;
-        dy = (rand.nextFloat() - 0.5f) * 5;
+        dx = (rand.nextFloat() - 0.5f) * 25;
+        dy = (rand.nextFloat() - 0.5f) * 25;
     }
 
     public void update() {
